@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pan-American Journal | Home</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --ocean-blue: #1a5276;
+            --light-blue: #3498db;
+            --earth-green: #27ae60;
+            --light-green: #2ecc71;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Georgia', serif;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--ocean-blue);
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--ocean-blue), var(--earth-green));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1rem;
+            padding-bottom: 1rem;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        
+        .tagline {
+            font-style: italic;
+            text-align: center;
+            opacity: 0.9;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: var(--ocean-blue);
+            padding: 1rem 0;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        nav a:hover, nav a.active {
+            background-color: var(--earth-green);
+        }
+        
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+        
+        .main-news-container {
+            display: grid;
+            grid-template-rows: auto auto;
+            gap: 2rem;
+        }
+        
+        /* Featured News */
+        .featured-news {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .featured-image {
+            height: 400px;
+            background-color: #ddd;
+            background-image: url('https://via.placeholder.com/800x400');
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .featured-content {
+            padding: 1.5rem;
+        }
+        
+        .category {
+            display: inline-block;
+            background-color: var(--earth-green);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+        
+        .featured-title {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--ocean-blue);
+        }
+        
+        .featured-excerpt {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            color: #555;
+        }
+        
+        .read-more {
+            display: inline-block;
+            background-color: var(--ocean-blue);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .read-more:hover {
+            background-color: var(--earth-green);
+        }
+        
+        /* News Articles */
+        .news-articles {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .news-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-image {
+            height: 180px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .card-content {
+            padding: 1rem;
+        }
+        
+        .card-category {
+            color: var(--ocean-blue);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+        
+        .card-excerpt {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .sidebar-section {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+        }
+        
+        .sidebar-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--earth-green);
+            color: var(--ocean-blue);
+        }
+        
+        .sidebar-content ul {
+            list-style: none;
+        }
+        
+        .sidebar-content li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .trending-item {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .trending-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--earth-green);
+        }
+        
+        .sidebar-meta {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 0.3rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--ocean-blue);
+            color: white;
+            padding: 3rem 0 2rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 0 1rem;
+        }
+        
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--earth-green);
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: white;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+        
+        .footer-links a:hover {
+            opacity: 1;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .logo {
+                font-size: 2rem;
+            }
+            
+            .nav-container {
+                flex-wrap: wrap;
+            }
+            
+            .featured-image {
+                height: 300px;
+            }
+            
+            .featured-title {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <div class="logo">Pan-American Journal</div>
+        </div>
+        <p class="tagline">Unifying Perspectives Across the Americas</p>
+    </header>
+    
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="active">Home</a>
+            <a href="politics.html">Politics</a>
+            <a href="economy.html">Economy</a>
+            <a href="sports.html">Sports</a>
+            <a href="#">Culture</a>
+            <a href="#">Opinion</a>
+        </div>
+    </nav>
+    
+    <main class="container">
+        <div class="grid-container">
+            <div class="main-news-container">
+                <section class="featured-news">
+                    <div class="featured-image"></div>
+                    <div class="featured-content">
+                        <span class="category">Breaking News</span>
+                        <h2 class="featured-title">Pan-American Summit Concludes with Historic Trade Agreement</h2>
+                        <p class="featured-excerpt">Leaders from North, Central, and South America have signed a groundbreaking trade agreement aimed at boosting economic cooperation across the hemisphere, promising new opportunities for businesses and consumers alike.</p>
+                        <a href="#" class="read-more">Read Full Story</a>
+                    </div>
+                </section>
+                
+                <section class="news-articles">
+                    <article class="news-card">
+                        <div class="card-image" style="background-image: url('https://via.placeholder.com/300x180')"></div>
+                        <div class="card-content">
+                            <div class="card-category">Economy</div>
+                            <h3 class="card-title">Regional Currency Fluctuations Impact Cross-Border Trade</h3>
+                            <p class="card-excerpt">Recent volatility in exchange rates is affecting businesses engaged in international commerce throughout the Americas.</p>
+                            <a href="economy.html" class="read-more">Read More</a>
+                        </div>
+                    </article>
+                    
+                    <article class="news-card">
+                        <div class="card-image" style="background-image: url('https://via.placeholder.com/300x180')"></div>
+                        <div class="card-content">
+                            <div class="card-category">Politics</div>
+                            <h3 class="card-title">Electoral Reforms Proposed Across Multiple Nations</h3>
+                            <p class="card-excerpt">Several countries are considering changes to voting systems in response to civic engagement concerns.</p>
+                            <a href="politics.html" class="read-more">Read More</a>
+                        </div>
+                    </article>
+                    
+                    <article class="news-card">
+                        <div class="card-image" style="background-image: url('https://via.placeholder.com/300x180')"></div>
+                        <div class="card-content">
+                            <div class="card-category">Sports</div>
+                            <h3 class="card-title">Continental Championships Draw Record Viewership</h3>
+                            <p class="card-excerpt">The latest Pan-American sporting event has seen unprecedented audience numbers across traditional and streaming platforms.</p>
+                            <a href="sports.html" class="read-more">Read More</a>
+                        </div>
+                    </article>
+                </section>
+            </div>
+            
+            <aside class="sidebar">
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Trending Now</h3>
+                    <div class="sidebar-content">
+                        <ul>
+                            <li class="trending-item">
+                                <span class="trending-number">1</span>
+                                <div>
+                                    <a href="#">Climate Accord Implementation Faces Challenges</a>
+                                    <div class="sidebar-meta">2 hours ago</div>
+                                </div>
+                            </li>
+                            <li class="trending-item">
+                                <span class="trending-number">2</span>
+                                <div>
+                                    <a href="#">New Transportation Corridor to Connect Pacific and Atlantic</a>
+                                    <div class="sidebar-meta">4 hours ago</div>
+                                </div>
+                            </li>
+                            <li class="trending-item">
+                                <span class="trending-number">3</span>
+                                <div>
+                                    <a href="#">Digital Currency Pilot Programs Launch in Three Countries</a>
+                                    <div class="sidebar-meta">6 hours ago</div>
+                                </div>
+                            </li>
+                            <li class="trending-item">
+                                <span class="trending-number">4</span>
+                                <div>
+                                    <a href="#">Cultural Exchange Initiative Announced for Youth</a>
+                                    <div class="sidebar-meta">12 hours ago</div>
+                                </div>
+                            </li>
+                            <li class="trending-item">
+                                <span class="trending-number">5</span>
+                                <div>
+                                    <a href="#">Sustainable Agriculture Methods Spreading Rapidly</a>
+                                    <div class="sidebar-meta">1 day ago</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Subscribe</h3>
+                    <div class="sidebar-content">
+                        <p>Stay informed with our daily newsletter covering the most important news across the Americas.</p>
+                        <form style="margin-top: 1rem;">
+                            <input type="email" placeholder="Your email address" style="width: 100%; padding: 0.8rem; margin-bottom: 1rem; border: 1px solid #ddd; border-radius: 4px;">
+                            <button type="submit" style="width: 100%; padding: 0.8rem; background-color: var(--earth-green); color: white; border: none; border-radius: 4px; cursor: pointer; font-weight: bold;">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <div class="footer-logo">Pan-American Journal</div>
+                <p>Delivering comprehensive coverage of news and events across North, Central, and South America since 2025.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Sections</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="politics.html">Politics</a></li>
+                    <li><a href="economy.html">Economy</a></li>
+                    <li><a href="sports.html">Sports</a></li>
+                    <li><a href="#">Culture</a></li>
+                    <li><a href="#">Opinion</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Company</h3>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Pan-American Journal. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
